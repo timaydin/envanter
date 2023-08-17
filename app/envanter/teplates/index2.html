@@ -97,7 +97,7 @@
             <ul>
                 <li><a href="#">Anasayfa</a></li>
                 <li><a href="#">Parça Listesi</a></li>
-                <li><a href="#">Yeni Parça Ekle</a></li>
+                <li><a href="#" id="open-popup">Yeni Parça Ekle</a></li>
                 <li><a href="#">Parça Ara</a></li>
                 <li><a href="#">Profil</a></li>
             </ul>
@@ -124,31 +124,40 @@
         </table>
     </div>
 
-    <!-- Parça Ekle Pop-up Penceresi -->
     <div id="add-component-popup" class="popup">
         <h2>Yeni Parça Ekle</h2>
         <form action="/parca_ekle" method="post">
-            <!-- Parça ekleme formu içeriği burada yer alacak -->
+            {% csrf_token %}
+            <label for="kategori">Kategori:</label>
+            <select id="kategori" name="kategori" required>
+                {% for category in categories %}
+                    <option value="{{ category }}">{{ category }}</option>
+                {% endfor %}
+            </select><br>
+            <label for="model">Model:</label>
+            <input type="text" id="model" name="model" required><br>
+            <!-- Diğer form alanları burada yer alacak -->
             <button type="submit">Parça Ekle</button>
         </form>
         <button id="close-popup">Kapat</button>
     </div>
+    
 
     <footer>&copy; @mekatronik.org © 2023 Parça Envanteri Uygulaması.</footer>
 
     <script>
         // JavaScript kodları burada yer alacak
-        const addComponentBtn = document.getElementById('add-component-btn');
+        const openPopupBtn = document.getElementById('open-popup');
         const addComponentPopup = document.getElementById('add-component-popup');
         const closePopupBtn = document.getElementById('close-popup');
 
-        addComponentBtn.addEventListener('click', () => {
-            addComponentPopup.style.display = 'block';
-        });
+        openPopupBtn.addEventListener('click', () => {
+        addComponentPopup.style.display = 'block';
+});
 
         closePopupBtn.addEventListener('click', () => {
-            addComponentPopup.style.display = 'none';
-        });
+        addComponentPopup.style.display = 'none';
+});
     </script>
 </body>
 
