@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Envo</title>
+    <style>
+        /* Basit bir stil ekleyebilirsiniz */
+        body {
+            font-family: Arial, sans-serif;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Envanter</h1>
+
+    <h2>Kategoriler</h2>
+    <ul>
+        {% for category in categories %}
+        <li>{{ category.name }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Parçalar</h2>
+    <ul>
+        {% for component in components %}
+        <li>
+            {{ component.model }} - {{ component.description }}
+            <a href="/parca/{{ component.id }}">Detaylar</a>
+            <a href="/parca_duzenle/{{ component.id }}">Düzenle</a>
+            <a href="/parca_sil/{{ component.id }}">Sil</a>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <h2>Yeni Parça Ekle</h2>
+    <form action="/parca_ekle" method="post">
+        <label for="model">Model:</label>
+        <input type="text" id="model" name="model" required><br>
+
+        <label for="description">Açıklama:</label>
+        <input type="text" id="description" name="description"><br>
+
+        <!-- Diğer parça özellikleri için input alanları ekleyebilirsiniz -->
+
+        <button type="submit">Parça Ekle</button>
+    </form>
+
+    <h2>Parçaları Ara</h2>
+    <form action="/parca_ara" method="get">
+        <label for="search_query">Ara:</label>
+        <input type="text" id="search_query" name="query" required><br>
+
+        <button type="submit">Ara</button>
+    </form>
+
+    <h2>Parça Detayları</h2>
+    {% if selected_component %}
+    <p>Model: {{ selected_component.model }}</p>
+    <p>Açıklama: {{ selected_component.description }}</p>
+    <!-- Diğer parça özelliklerini buraya ekleyebilirsiniz -->
+    <a href="/parca_duzenle/{{ selected_component.id }}">Düzenle</a>
+    <a href="/parca_sil/{{ selected_component.id }}">Sil</a>
+    {% else %}
+    <p>Bir parça seçilmedi.</p>
+    {% endif %}
+
+    <h2>Mesaj Alanı</h2>
+    <p>{{ message }}</p>
+</body>
+</html>
