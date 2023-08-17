@@ -1,13 +1,36 @@
-<!DOCTYPE html>
+
+    <!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Envo</title>
+    <title>envo</title>
     <style>
-        /* Basit bir stil ekleyebilirsiniz */
         body {
             font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 20px;
         }
         ul {
             list-style-type: none;
@@ -15,19 +38,44 @@
         }
         li {
             margin-bottom: 10px;
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
         }
+        form {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        button {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background-color: #555;
+        }
+        .emptyspace {
+            height: 100px; /* 100px boş alan yüksekliği */
+}
     </style>
 </head>
-<body>
+<body>   
     <h1>Envanter</h1>
-
+    <div class="container">
     <h2>Kategoriler</h2>
     <ul>
         {% for category in categories %}
         <li>{{ category.name }}</li>
         {% endfor %}
     </ul>
-
     <h2>Parçalar</h2>
     <ul>
         {% for component in components %}
@@ -39,7 +87,6 @@
         </li>
         {% endfor %}
     </ul>
-
     <h2>Yeni Parça Ekle</h2>
     <form action="/parca_ekle" method="post">
         <label for="model">Model:</label>
@@ -48,11 +95,9 @@
         <label for="description">Açıklama:</label>
         <input type="text" id="description" name="description"><br>
 
-        <!-- Diğer parça özellikleri için input alanları ekleyebilirsiniz -->
 
         <button type="submit">Parça Ekle</button>
     </form>
-
     <h2>Parçaları Ara</h2>
     <form action="/parca_ara" method="get">
         <label for="search_query">Ara:</label>
@@ -74,5 +119,17 @@
 
     <h2>Mesaj Alanı</h2>
     <p>{{ message }}</p>
+    <div>
+        <div class="emptyspace">
+
+        </div>
+    </div>
+</div>
 </body>
 </html>
+<footer>
+    &copy; @mekatronik.org  © 2023 Parça Envanteri Uygulaması.
+</footer>
+</body>
+</html>
+
