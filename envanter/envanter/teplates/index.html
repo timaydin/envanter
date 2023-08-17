@@ -68,6 +68,38 @@
     </style>
 </head>
 <body>   
+    <h1>envanter yönetimi</h1>
+    
+    <!-- Component Search Form -->
+    <form method="GET" action="">
+        <label for="search-model">Search Component Model:</label>
+        <input type="text" id="search-model" name="search_model">
+        <button type="submit">Search</button>
+    </form>
+    
+    <!-- Component List Table -->
+    <table border="1">
+        <tr>
+            <th>Model</th>
+            <th>Açıklama</th>
+            <th>Üretici</th>
+            <th>Kategori</th>
+            <th>Paket</th>
+            <th>Konum</th>
+            <th>Stok</th>
+        </tr>
+        {% for component in components %}
+        <tr>
+            <td>{{ component.model }}</td>
+            <td>{{ component.description }}</td>
+            <td>{{ component.manufacturer }}</td>
+            <td>{{ component.category }}</td>
+            <td>{{ component.package }}</td>
+            <td>{{ component.location }}</td>
+            <td>{{ component.stock }}</td>
+        </tr>
+        {% endfor %}
+    </table>
     <h1>Envanter</h1>
     <div class="container">
     <h2>Kategoriler</h2>
@@ -91,7 +123,10 @@
     <form action="/parca_ekle" method="post">
         <label for="model">Model:</label>
         <input type="text" id="model" name="model" required><br>
-
+        <input type="text" id="manufacturer" name="üretici" required><br>
+        <input type="text" id="category" name="kategori" required><br>
+        <input type="text" id="package" name="paket" required><br>
+        <input type="text" id="location" name="konum" required><br>
         <label for="description">Açıklama:</label>
         <input type="text" id="description" name="description"><br>
 
