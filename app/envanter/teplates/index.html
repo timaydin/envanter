@@ -129,7 +129,7 @@
     </div>
 
     <div id="add-component-popup" class="popup">
-        <h2>Yeni Parça Ekle</h2>
+        <h2>Yeni Elektronik Komponent Ekle</h2>
         <form action="/parca_ekle" method="post">
             {% csrf_token %}
             <label for="kategori">Kategori:</label>
@@ -140,12 +140,26 @@
             </select><br>
             <label for="model">Model:</label>
             <input type="text" id="model" name="model" required><br>
-            
+            <label for="parca_no">Parça Numarası:</label>
+            <input type="text" id="parca_no" name="parca_no" required><br>
+            <label for="uretici">Üretici:</label>
+            <input type="text" id="uretici" name="uretici" required><br>
+            <label for="birim_fiyat">Birim Fiyat:</label>
+            <input type="number" id="birim_fiyat" name="birim_fiyat" step="10" required><br>
+            <label for="stok_miktar">Stok Miktarı:</label>
+            <input type="number" id="stok_miktar" name="stok_miktar" required><br>
+            <label for="minimum_stok">Minimum Stok Miktarı:</label>
+            <input type="number" id="minimum_stok" name="minimum_stok" required><br>
+            <label for="maximum_stok">Maksimum Stok Miktarı:</label>
+            <input type="number" id="maximum_stok" name="maximum_stok" required><br>
+            <label for="teknik_ozellikler">Teknik Özellikler:</label>
+            <textarea id="teknik_ozellikler" name="teknik_ozellikler" rows="4" cols="50"></textarea><br>
             <!-- Diğer form alanları burada yer alacak -->
             <button type="submit">Parça Ekle</button>
         </form>
         <button id="close-popup">Kapat</button>
     </div>
+    
     
 
     <footer>&copy; @mekatronik.org © 2023 Parça Envanteri Uygulaması.</footer>
