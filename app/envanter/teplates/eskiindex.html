@@ -1,0 +1,171 @@
+
+    <!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>envo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        form {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        button {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background-color: #555;
+        }
+        .emptyspace {
+            height: 100px; /* 100px boş alan yüksekliği */
+}
+    </style>
+</head>
+<body>   
+    <h1>envanter yönetimi</h1>
+    
+    <!-- Component Search Form -->
+    <form method="GET" action="">
+        <label for="search-model">Search Component Model:</label>
+        <input type="text" id="search-model" name="search_model">
+        <button type="submit">Search</button>
+    </form> 
+    <!-- Component List Table -->
+    <table border="1">
+        <tr>
+            <th>Model</th>
+            <th>Açıklama</th>
+            <th>Üretici</th>
+            <th>Kategori</th>
+            <th>Paket</th>
+            <th>Konum</th>
+            <th>Stok</th>
+        </tr>
+        {% for component in components %}
+        <tr>
+            <td>{{ component.model }}</td>
+            <td>{{ component.description }}</td>
+            <td>{{ component.manufacturer }}</td>
+            <td>{{ component.category }}</td>
+            <td>{{ component.package }}</td>
+            <td>{{ component.location }}</td>
+            <td>{{ component.stock }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <h1>Envanter</h1>
+    <div class="container">
+    <h2>Kategoriler</h2>
+    <ul>
+        {% for category in categories %}
+        <li>{{ category.name }}</li>
+        {% endfor %}
+    </ul>
+    <h2>Parçalar</h2>
+    <ul>
+        {% for component in components %}
+        <li>
+            {{ component.model }} - {{ component.description }}
+            <a href="/parca/{{ component.id }}">Detaylar</a>
+            <a href="/parca_duzenle/{{ component.id }}">Düzenle</a>
+            <a href="/parca_sil/{{ component.id }}">Sil</a>
+        </li>
+        {% endfor %}
+    </ul>
+    <h2>Yeni Parça Ekle</h2>
+    <form action="/parca_ekle" method="post">
+        <label for="kategori">kategori:</label>
+         
+        <label for="model">Model:</label>
+        <input type="text" id="model" name="model" required><br>
+        <input type="text" id="manufacturer" name="üretici" required><br>
+        <input type="text" id="category" name="kategori" required><br>
+        <input type="text" id="package" name="paket" required><br>
+        <input type="text" id="location" name="konum" required><br>
+        <label for="description">Açıklama:</label>
+        <input type="text" id="description" name="description"><br>
+
+
+        <button type="submit">Parça Ekle</button>
+    </form>
+    <h2>Parçaları Ara</h2>
+    <form action="/parca_ara" method="get">
+        <label for="search_query">Ara:</label>
+        <input type="text" id="search_query" name="query" required><br>
+
+        <button type="submit">Ara</button>
+    </form>
+
+    <h2>Parça Detayları</h2>
+    {% if selected_component %}
+    <p>Model: {{ selected_component.model }}</p>
+    <p>Açıklama: {{ selected_component.description }}</p>
+    <!-- Diğer parça özelliklerini buraya ekleyebilirsiniz -->
+    <a href="/parca_duzenle/{{ selected_component.id }}">Düzenle</a>
+    <a href="/parca_sil/{{ selected_component.id }}">Sil</a>
+    {% else %}
+    <p>Bir parça seçilmedi.</p>
+    {% endif %}
+
+    <h2>Mesaj Alanı</h2>
+    <p>{{ message }}</p>
+    <div>
+        <div class="emptyspace">
+
+        </div>
+    </div>
+</div>
+</body>
+</html>
+<footer>
+    &copy; @mekatronik.org  © 2023 Parça Envanteri Uygulaması.
+</footer>
+</body>
+</html>
+
