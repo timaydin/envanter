@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1f1f1f; /* Arka planı koyu renk */
+            color: #fff; /* Yazı rengi beyaz */
+        }
+
+        header {
+            background-color: #333;
+            padding: 10px 0;
+            text-align: center;
+            transition: background-color 0.3s ease; 
+        }
+       
+
+        header:hover {
+            background-color: #555; /* Üzerine gelindiğinde yeni arka plan rengi */
+        }
+        nav ul {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav li {
+            margin: 0 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        .profile-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #979797;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-info {
+            padding: 20px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .profile-actions {
+            padding: 20px;
+            text-align: center;
+        }
+
+        button {
+            background-color: #333;
+            color: #7e7e7e;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 0 10px;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<header>
+    <nav>
+        <ul>
+            <li><a href="/home/nur/Desktop/envanter/app/envanter/teplates/index.html">Anasayfa</a></li>
+            <li><a href="#">Parça Listesi</a></li>
+            <li><a href="#" id="open-popup">Yeni Parça Ekle</a></li>
+            <li><a href="#">Parça Ara</a></li>
+            <li><a href="/home/nur/Desktop/envanter/app/envanter/teplates/profile.html">Profil</a></li>
+        </ul>
+    </nav>
+</header>
+<body>
+    {% block content %}
+<div class="profile-container">
+    <div class="profile-info">
+        <h2>Kullanıcı Adı: {{ user.username }}</h2>
+        <p>Email: {{ user.email }}</p>
+        <p>Telefon: {{ user.profile.phone_number }}</p>
+        <p>Şirket: {{ user.profile.company }}</p>
+        <p>Şehir: {{ user.location }}</p>
+    </div>
+    <div class="profile-actions">
+        <button>Edit Profile</button>
+        <button>asdasdasd</button>
+        <button>asdasda</button>
+    </div>
+</div>
+{% endblock %}
+</body>
+</html>

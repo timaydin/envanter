@@ -16,10 +16,15 @@
 
         header {
             background-color: #333;
-            padding: 20px 0;
+            padding: 10px 0;
             text-align: center;
+            transition: background-color 0.3s ease; 
         }
+       
 
+        header:hover {
+            background-color: #555; /* Üzerine gelindiğinde yeni arka plan rengi */
+        }
         nav ul {
             padding: 0;
             margin: 0;
@@ -63,7 +68,7 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background-color: #fff;
+            background-color: #6b6b6b;
             border: 1px solid #ddd;
             border-radius: 4px;
             padding: 20px;
@@ -92,14 +97,13 @@
 
 <body>
     <header>
-        <h1>Envanter Yönetimi</h1>
         <nav>
             <ul>
-                <li><a href="#">Anasayfa</a></li>
+                <li><a href="/home/nur/Desktop/envanter/app/envanter/teplates/index.html">Anasayfa</a></li>
                 <li><a href="#">Parça Listesi</a></li>
                 <li><a href="#" id="open-popup">Yeni Parça Ekle</a></li>
                 <li><a href="#">Parça Ara</a></li>
-                <li><a href="#">Profil</a></li>
+                <li><a href="/home/nur/Desktop/envanter/app/envanter/teplates/profile.html">Profil</a></li>
             </ul>
         </nav>
     </header>
@@ -112,13 +116,13 @@
         </form>
         <table border="1">
             <tr>
-                <th>Model</th>
-                <th>Açıklama</th>
+                <th>Model No</th>
                 <th>Üretici</th>
                 <th>Kategori</th>
                 <th>Paket</th>
                 <th>Konum</th>
-                <th>Stok</th>
+                <th>Açıklama</th>
+                <th>Stok adedi</th>
             </tr>
             <!-- Stok tablosu içeriği burada yer alacak -->
         </table>
@@ -136,6 +140,7 @@
             </select><br>
             <label for="model">Model:</label>
             <input type="text" id="model" name="model" required><br>
+            
             <!-- Diğer form alanları burada yer alacak -->
             <button type="submit">Parça Ekle</button>
         </form>
