@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>envo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1f1f1f; /* Arka planı koyu renk */
+            color: #fff; /* Yazı rengi beyaz */
+        }
+
+        header {
+            background-color: #333;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        nav ul {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav li {
+            margin: 0 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        /* ... diğer stiller burada yer alacak ... */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        #add-component-popup {
+            z-index: 999;
+        }
+
+        #close-popup {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        #close-popup:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Envanter Yönetimi</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Anasayfa</a></li>
+                <li><a href="#">Parça Listesi</a></li>
+                <li><a href="#">Yeni Parça Ekle</a></li>
+                <li><a href="#">Parça Ara</a></li>
+                <li><a href="#">Profil</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="stock-table-container">
+        <form id="search-stock-form" method="GET" action="">
+            <label for="search-stock">Stok Ara:</label>
+            <input type="text" id="search-stock" name="search_stock">
+            <button type="submit">Ara</button>
+        </form>
+        <table border="1">
+            <tr>
+                <th>Model</th>
+                <th>Açıklama</th>
+                <th>Üretici</th>
+                <th>Kategori</th>
+                <th>Paket</th>
+                <th>Konum</th>
+                <th>Stok</th>
+            </tr>
+            <!-- Stok tablosu içeriği burada yer alacak -->
+        </table>
+    </div>
+
+    <!-- Parça Ekle Pop-up Penceresi -->
+    <div id="add-component-popup" class="popup">
+        <h2>Yeni Parça Ekle</h2>
+        <form action="/parca_ekle" method="post">
+            <!-- Parça ekleme formu içeriği burada yer alacak -->
+            <button type="submit">Parça Ekle</button>
+        </form>
+        <button id="close-popup">Kapat</button>
+    </div>
+
+    <footer>&copy; @mekatronik.org © 2023 Parça Envanteri Uygulaması.</footer>
+
+    <script>
+        // JavaScript kodları burada yer alacak
+        const addComponentBtn = document.getElementById('add-component-btn');
+        const addComponentPopup = document.getElementById('add-component-popup');
+        const closePopupBtn = document.getElementById('close-popup');
+
+        addComponentBtn.addEventListener('click', () => {
+            addComponentPopup.style.display = 'block';
+        });
+
+        closePopupBtn.addEventListener('click', () => {
+            addComponentPopup.style.display = 'none';
+        });
+    </script>
+</body>
+
+</html>
