@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="inventory" id="Project-e5" database="PostgreSQL" >
+	<comment><![CDATA[Electronics component inventory database]]></comment>
+	<schema name="public" >
+		<comment><![CDATA[standard public schema]]></comment>
+		<table name="categories" generator_rows="100" generator_order="0" >
+			<column name="id" type="serial" jt="4" mandatory="y" />
+			<column name="name" type="varchar" length="100" jt="12" mandatory="y" />
+			<column name="description" type="varchar" length="500" jt="12" />
+			<column name="parent_id" type="integer" jt="4" />
+			<index name="pk_categories" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<table name="component_document_links" generator_rows="337" generator_order="10" >
+			<column name="id" type="serial" jt="4" mandatory="y" />
+			<column name="document_id" type="integer" jt="4" mandatory="y" />
+			<column name="component_id" type="integer" jt="4" mandatory="y" />
+			<index name="pk_component_document_links" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_component_document_links_documents" to_schema="public" to_table="documents" >
+				<fk_column name="document_id" pk="id" />
+			</fk>
+			<fk name="fk_component_document_links_components" to_schema="public" to_table="components" >
+				<fk_column name="component_id" pk="id" />
+			</fk>
+		</table>
+		<table name="components" generator_rows="225" generator_order="9" >
+			<column name="id" type="serial" jt="4" mandatory="y" />
+			<column name="model" prior="part_number" type="varchar" length="100" jt="12" mandatory="y" />
+			<column name="description" type="varchar" length="500" jt="12" />
+			<column name="manufacturer_id" prior="manufacturer" type="integer" jt="4" />
+			<column name="category_id" type="integer" jt="4" />
+			<column name="package_id" type="integer" jt="4" />
+			<column name="location_id" type="integer" jt="4" />
+			<column name="stock" type="integer" jt="4" >
+				<defo><![CDATA[0]]></defo>
+			</column>
+			<index name="pk_components" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="idx_components" unique="NORMAL" >
+				<column name="model" />
+			</index>
+			<fk name="fk_components_locations" to_schema="public" to_table="locations" >
+				<fk_column name="location_id" pk="id" />
+			</fk>
+			<fk name="fk_components_categories" to_schema="public" to_table="categories" >
+				<fk_column name="category_id" pk="id" />
+			</fk>
+			<fk name="fk_components_packages" to_schema="public" to_table="packages" >
+				<fk_column name="package_id" pk="id" />
+			</fk>
+			<fk name="fk_components_manufacturers" to_schema="public" to_table="manufacturers" >
+				<fk_column name="manufacturer_id" pk="id" />
+			</fk>
+		</table>
+		<table name="document_types" prior="data_types" generator_rows="100" generator_order="1" >
+			<column name="id" type="serial" jt="4" mandatory="y" />
+			<column name="name" type="varchar" length="100" jt="12" mandatory="y" />
+			<index name="pk_data_types" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<table name="documents" generator_rows="150" generator_order="2" >
+			<column name="id" type="serial" jt="4" />
+			<column name="name" type="varchar" length="100" jt="12" mandatory="y" />
+			<column name="description" type="varchar" length="500" jt="12" />
+			<column name="document_type_id" type="integer" jt="4" mandatory="y" />
+			<column name="document_path" prior="document" type="varchar" length="500" jt="12" mandatory="y" />
+			<index name="unq_documents_id" unique="UNIQUE_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_documents_document_types" to_schema="public" to_table="document_types" >
+				<fk_column name="document_type_id" pk="id" />
+			</fk>
+		</table>
+		<table name="location_types" generator_rows="100" generator_order="4" >
+			<column name="id" type="serial" jt="4" mandatory="y" />
+			<column name="name" type="varchar" length="100" jt="12" mandatory="y" />
+			<index name="pk_location_types" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<table name="locations" generator_rows="150" generator_order="5" >
+			<column name="id" type="serial" jt="4" mandatory="y" />
+			<column name="name" type="varchar" length="100" jt="12" mandatory="y" />
+			<column name="location_type_id" type="integer" jt="4" mandatory="y" />
+			<column name="parent_id" type="integer" length="10" decimal="0" jt="4" />
+			<index name="pk_locations" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_locations_location_types" to_schema="public" to_table="location_types" >
+				<fk_column name="location_type_id" pk="id" />
+			</fk>
+		</table>
+		<table name="manufacturers" generator_rows="100" generator_order="6" >
+			<column name="id" type="serial" jt="4" mandatory="y" />
+			<column name="name" type="varchar" length="100" jt="12" mandatory="y" />
+			<index name="pk_manufacturers" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<table name="packages" generator_rows="100" generator_order="7" >
+			<column name="id" type="serial" jt="4" mandatory="y" />
+			<column name="name" type="varchar" length="100" jt="12" mandatory="y" />
+			<index name="pk_packages" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<table name="purchase_details" generator_rows="337" generator_order="11" >
+			<column name="id" type="serial" jt="4" mandatory="y" />
+			<column name="purchase_id" prior="purchases_id" type="integer" jt="4" mandatory="y" />
+			<column name="component_id" prior="components_id" type="integer" jt="4" mandatory="y" />
+			<column name="quantity" type="integer" jt="4" mandatory="y" />
+			<column name="cost" type="numeric" jt="2" />
+			<column name="total_cost" type="numeric" jt="2" />
+			<index name="pk_purchase_details" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_purchase_details_purchases" to_schema="public" to_table="purchases" >
+				<fk_column name="purchase_id" pk="id" />
+			</fk>
+			<fk name="fk_purchase_details_components" to_schema="public" to_table="components" >
+				<fk_column name="component_id" pk="id" />
+			</fk>
+		</table>
+		<table name="purchases" generator_rows="150" generator_order="3" >
+			<column name="id" type="serial" jt="4" mandatory="y" />
+			<column name="date" type="date" jt="91" mandatory="y" />
+			<column name="supplier_id" type="integer" jt="4" mandatory="y" />
+			<index name="pk_purchases" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_purchases_suppliers" to_schema="public" to_table="suppliers" >
+				<fk_column name="supplier_id" pk="id" />
+			</fk>
+		</table>
+		<table name="suppliers" generator_rows="100" generator_order="8" >
+			<column name="id" type="serial" jt="4" mandatory="y" />
+			<column name="name" type="varchar" length="100" jt="12" mandatory="y" />
+			<index name="pk_suppliers" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<sequence name="data_types_id_seq" options="START WITH 1 INCREMENT BY 1" />
+	</schema>
+	<connector name="PostgreSQL" database="PostgreSQL" driver_class="org.postgresql.Driver" driver_jar="postgresql-42.5.3.jar" driver_desc="Standard" host="localhost" port="5432" instance="inventory" user="admin" passwd="UWUzNEZpdWFX" useSystemProxy="false" />
+	<layout name="Layout" id="Layout-bf3" joined_routing="y" show_column_type="y" show_schema_name="y" show_relation="columns" >
+		<entity schema="public" name="categories" color="3986C1" x="1216" y="160" />
+		<entity schema="public" name="component_document_links" color="3986C1" x="368" y="64" />
+		<entity schema="public" name="components" color="3986C1" x="768" y="96" />
+		<entity schema="public" name="document_types" color="3986C1" x="48" y="240" />
+		<entity schema="public" name="documents" color="3986C1" x="48" y="80" />
+		<entity schema="public" name="location_types" color="3986C1" x="1184" y="528" />
+		<entity schema="public" name="locations" color="3986C1" x="1168" y="384" />
+		<entity schema="public" name="manufacturers" color="3986C1" x="1216" y="48" />
+		<entity schema="public" name="packages" color="3986C1" x="1232" y="288" />
+		<entity schema="public" name="purchase_details" color="3986C1" x="768" y="304" />
+		<entity schema="public" name="purchases" color="3986C1" x="800" y="480" />
+		<entity schema="public" name="suppliers" color="3986C1" x="800" y="592" />
+		<script name="SQL_Editor" id="Editor-bfe" language="SQL" >
+			<string><![CDATA[select * from location_types;]]></string>
+		</script>
+	</layout>
+</project>
