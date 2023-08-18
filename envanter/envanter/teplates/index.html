@@ -155,7 +155,7 @@
 
     <div id="add-component-popup" class="popup">
         <h2>Yeni Komponent Ekle</h2>
-        <form action="/parca_ekle" method="post">
+        <form action="{% url 'parca_ekle' %}" method="post">
             {% csrf_token %}
             <label for="kategori">Kategori:</label>
             <select id="kategori" name="kategori" required>
@@ -188,6 +188,7 @@
         </form>
         <button id="close-popup">Kapat</button>
     </div>
+    
     
     
     

@@ -1,9 +1,20 @@
 from django.shortcuts import render
 from .models import Category, Component
-from django.http import HttpResponse
+from django.shortcuts import render, redirect
+from .forms import ComponentForm
 
 
+def parca_ekle(request):
+    if request.method == 'POST':
+        form = ComponentForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('index')  
+    else:
+        form = ComponentForm()
+    return render(request, 'index.html', {'form': form})
 
+def Category
 
 def index(request):
     search_model = request.GET.get('search_model')
