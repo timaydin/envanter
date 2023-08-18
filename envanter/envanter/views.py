@@ -3,6 +3,12 @@ from .models import Category, Component
 from django.shortcuts import render, redirect
 from .forms import ComponentForm
 
+from django.shortcuts import render, get_object_or_404
+from .models import Component
+
+def component_detail(request, component_id):
+    component = get_object_or_404(Component, pk=component_id)
+    return render(request, 'component_detail_popup.html', {'component': component})
 
 def parca_ekle(request):
     if request.method == 'POST':

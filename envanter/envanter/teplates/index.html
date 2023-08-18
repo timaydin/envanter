@@ -151,6 +151,7 @@
             </tr>
             {% for component in components %}
         <tr>
+            <td><a onclick="openPopup2(event)">{{ component.model }}</a></td>
             <td>{{ component.model }}</td>
             <td>{{ component.manufacturer }}</td>
             <td>{{ component.category }}</td>
@@ -161,6 +162,18 @@
         </tr>
         {% endfor %}
     </table>
+</div>
+<div class="popup2">
+    <h2>Ürün Detayları</h2>
+    <p><strong>Model No:</strong> {{ component.model }}</p>
+    <p><strong>Üretici:</strong> {{ component.manufacturer }}</p>
+    <p><strong>Kategori:</strong> {{ component.category }}</p>
+    <p><strong>Paket:</strong> {{ component.package }}</p>
+    <p><strong>Konum:</strong> {{ component.location }}</p>
+    <p><strong>Açıklama:</strong> {{ component.technical_specifications }}</p>
+    <p><strong>Stok Adedi:</strong> {{ component.stock }}</p>
+    <!-- Diğer detayları burada görüntüleyebilirsiniz -->
+    <button onclick="closePopup2()">Kapat</button>
 </div>
     <div id="add-component-popup" class="popup">
         <h2>Yeni Komponent Ekle</h2>
@@ -209,6 +222,27 @@
     <footer>&copy; @mekatronik.org © 2023 Parça Envanteri Uygulaması.</footer>
 
     <script>
+        
+        window.open(event.target.href, 'Ürün Detayları', 'width=400,height=400,resizable=yes');
+    
+    </script>
+    <script>
+        // Popup açma işlemi
+document.addEventListener('click', function(event) {
+    if (event.target.classList.contains('popup2-link')) {
+        var componentId = event.target.getAttribute('href').split('/').pop();
+        var popup = document.getElementById('popup2-' + componentId);
+        popup.style.display = 'block';
+    }
+});
+
+// Popup kapatma işlemi
+document.addEventListener('click', function(event) {
+    if (event.target.classList.contains('popup2-close')) {
+        var popup = event.target.closest('.popup2-content');
+        popup.style.display = 'none';
+    }
+});
         // JavaScript kodları burada yer alacak
         const openPopupBtn = document.getElementById('open-popup');
         const addComponentPopup = document.getElementById('add-component-popup');

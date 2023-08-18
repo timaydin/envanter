@@ -20,5 +20,5 @@ from . import views
 urlpatterns = [
     path('', views.index, name='index'),
     path('parca_ekle', views.parca_ekle, name='parca_ekle'),  # URL'yi doğru şekilde belirtin
-    
+    path('component/<int:component_id>/', views.component_detail, name='component_detail'),
 ]
