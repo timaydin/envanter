@@ -8,6 +8,11 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render, get_object_or_404
 from .models import Component
+from django.contrib.auth.decorators import login_required
+
+@login_required
+def profile(request):
+    return render(request, 'index.html')
 
 def component_detail(request, component_id):
     component = get_object_or_404(Component, pk=component_id)

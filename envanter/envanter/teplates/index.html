@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>envo</title>
     <style>
+        .emptyspace {
+        margin: 10px;
+        } 
+
+        
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -15,14 +20,14 @@
         }
 
         header {
-            background-color: #333;
+            background-color: #19182c;
             padding: 10px 0;
             text-align: center;
             transition: background-color 0.3s ease; 
         }
 
         header:hover {
-            background-color: #555; /* Üzerine gelindiğinde yeni arka plan rengi */
+            background-color: #3d3863; /* Üzerine gelindiğinde yeni arka plan rengi */
         }
         nav ul {
             padding: 0;
@@ -41,6 +46,7 @@
             color: #fff;
             font-weight: bold;
             font-size: 16px;
+            padding-left: auto;
         }
 
         .container {
@@ -129,16 +135,17 @@
                 <li><a href="/home/nur/Desktop/envanter/envanter/envanter/teplates/index.html">Anasayfa</a></li>
                 <li><a href="#" id="open-popup">Yeni Parça Ekle</a></li>
                 <li><a href="/home/nur/Desktop/envanter/envanter/envanter/teplates/profile.html">Profil</a></li>
+                <div id="stock-table-container">
+                    <form id="search-stock-form" method="GET" action="">
+                        <label for="search-stock">Stok Ara:</label>
+                        <input type="text" id="search-stock" name="search_stock">
+                        <button type="submit">Ara</button>
+                    </form>
             </ul>
         </nav>
     </header>
-
-    <div id="stock-table-container">
-        <form id="search-stock-form" method="GET" action="">
-            <label for="search-stock">Stok Ara:</label>
-            <input type="text" id="search-stock" name="search_stock">
-            <button type="submit">Ara</button>
-        </form>
+<div class="emptyspace">
+    </div>
         <table border="1">
             <tr>
                 <th>Model No</th>
@@ -161,18 +168,6 @@
         </tr>
         {% endfor %}
     </table>
-</div>
-<div class="popup2">
-    <h2>Ürün Detayları</h2>
-    <p><strong>Model No:</strong> {{ component.model }}</p>
-    <p><strong>Üretici:</strong> {{ component.manufacturer }}</p>
-    <p><strong>Kategori:</strong> {{ component.category }}</p>
-    <p><strong>Paket:</strong> {{ component.package }}</p>
-    <p><strong>Konum:</strong> {{ component.location }}</p>
-    <p><strong>Açıklama:</strong> {{ component.technical_specifications }}</p>
-    <p><strong>Stok Adedi:</strong> {{ component.stock }}</p>
-    <!-- Diğer detayları burada görüntüleyebilirsiniz -->
-    <button onclick="closePopup2()">Kapat</button>
 </div>
     <div id="add-component-popup" class="popup">
         <h2>Yeni Komponent Ekle</h2>
@@ -213,35 +208,8 @@
         </form>
         <button id="close-popup">Kapat</button>
     </div>
-    
-    
-    
-    
-
     <footer>&copy; @mekatronik.org © 2023 Parça Envanteri Uygulaması.</footer>
-
     <script>
-        
-        window.open(event.target.href, 'Ürün Detayları', 'width=400,height=400,resizable=yes');
-    
-    </script>
-    <script>
-        // Popup açma işlemi
-document.addEventListener('click', function(event) {
-    if (event.target.classList.contains('popup2-link')) {
-        var componentId = event.target.getAttribute('href').split('/').pop();
-        var popup = document.getElementById('popup2-' + componentId);
-        popup.style.display = 'block';
-    }
-});
-
-// Popup kapatma işlemi
-document.addEventListener('click', function(event) {
-    if (event.target.classList.contains('popup2-close')) {
-        var popup = event.target.closest('.popup2-content');
-        popup.style.display = 'none';
-    }
-});
         // JavaScript kodları burada yer alacak
         const openPopupBtn = document.getElementById('open-popup');
         const addComponentPopup = document.getElementById('add-component-popup');
@@ -256,5 +224,4 @@ document.addEventListener('click', function(event) {
 });
     </script>
 </body>
-
 </html>
