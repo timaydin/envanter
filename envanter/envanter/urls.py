@@ -16,9 +16,12 @@ Including another URLconf
 
 from django.urls import path
 from . import views
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('', views.index, name='index'),
     path('parca_ekle', views.parca_ekle, name='parca_ekle'),  # URL'yi doğru şekilde belirtin
+    path('register/', auth_views.RegisterView.as_view(), name='register'),
+    path('login/', auth_views.LoginView.as_view(), name='login'),
     path('component/<int:component_id>/', views.component_detail, name='component_detail'),
 ]
