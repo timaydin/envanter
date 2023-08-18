@@ -8,7 +8,7 @@ from .models import Component
 
 def component_detail(request, component_id):
     component = get_object_or_404(Component, pk=component_id)
-    return render(request, 'component_detail_popup.html', {'component': component})
+    return render(request, 'Popup2', {'component': component})
 
 def parca_ekle(request):
     if request.method == 'POST':
@@ -20,7 +20,7 @@ def parca_ekle(request):
         form = ComponentForm()
     return render(request, 'index.html', {'form': form})
 
-def Category
+#def Category
 
 def index(request):
     search_model = request.GET.get('search_model')
