@@ -10,7 +10,7 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #1f1f1f; /* Arka planı koyu renk */
+            background-color: #242424; /* Arka planı koyu renk */
             color: #fff; /* Yazı rengi beyaz */
         }
 
@@ -149,10 +149,19 @@
                 <th>Açıklama</th>
                 <th>Stok adedi</th>
             </tr>
-            <!-- Stok tablosu içeriği burada yer alacak -->
-        </table>
-    </div>
-
+            {% for component in components %}
+        <tr>
+            <td>{{ component.model }}</td>
+            <td>{{ component.manufacturer }}</td>
+            <td>{{ component.category }}</td>
+            <td>{{ component.package }}</td>
+            <td>{{ component.location }}</td>
+            <td>{{ component.technical_specifications }}</td>
+            <td>{{ component.stock }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
     <div id="add-component-popup" class="popup">
         <h2>Yeni Komponent Ekle</h2>
         <form action="{% url 'parca_ekle' %}" method="post">
