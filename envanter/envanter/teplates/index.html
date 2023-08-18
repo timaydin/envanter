@@ -60,12 +60,15 @@
             text-align: left;
         }
         .popup {
+            font-size: 12px;
+
             display: none;
             position: fixed;
             top: 50%;
             left: 50%;
-            max-width: 400px; /* Sayfa genişliğinin yüzde 80'i kadar maksimum genişlik */
-            max-height: 500px;
+            max-height: 85%;
+            width: 800px;
+            height: 600px;
             overflow-y: auto; /* Eğer içerik pop-up sığmazsa kaydırma çubukları görünsün */
             transform: translate(-50%, -50%);
             background-color: #6b6b6b;
@@ -86,6 +89,7 @@
 
         .popup label {
             display: block;
+            padding: auto;
             font-weight: bold;
         }
 
@@ -122,11 +126,9 @@
     <header>
         <nav>
             <ul>
-                <li><a href="/home/nur/Desktop/envanter/app/envanter/teplates/index.html">Anasayfa</a></li>
-                <li><a href="#">Parça Listesi</a></li>
+                <li><a href="/home/nur/Desktop/envanter/envanter/envanter/teplates/index.html">Anasayfa</a></li>
                 <li><a href="#" id="open-popup">Yeni Parça Ekle</a></li>
-                <li><a href="#">Parça Ara</a></li>
-                <li><a href="/home/nur/Desktop/envanter/app/envanter/teplates/profile.html">Profil</a></li>
+                <li><a href="/home/nur/Desktop/envanter/envanter/envanter/teplates/profile.html">Profil</a></li>
             </ul>
         </nav>
     </header>
@@ -152,7 +154,7 @@
     </div>
 
     <div id="add-component-popup" class="popup">
-        <h2>Yeni Elektronik Komponent Ekle</h2>
+        <h2>Yeni Komponent Ekle</h2>
         <form action="/parca_ekle" method="post">
             {% csrf_token %}
             <label for="kategori">Kategori:</label>
@@ -171,10 +173,10 @@
             <input type="number" id="birim_fiyat" name="birim_fiyat" step="0.01" required><br>
             <label for="stok_miktar">Stok Miktarı:</label>
             <input type="number" id="stok_miktar" name="stok_miktar" required><br>
-            <label for="minimum_stok">Minimum Stok Miktarı:</label>
-            <input type="number" id="minimum_stok" name="minimum_stok" required><br>
-            <label for="maximum_stok">Maksimum Stok Miktarı:</label>
-            <input type="number" id="maximum_stok" name="maximum_stok" required><br>
+            <label for="Ohm">Direnç Ohm:</label>
+            <input type="number" id="Ohm" name="Ohm" required><br>
+            <label for="W">W:</label>
+            <input type="number" id="W" name="W" required><br>
             <label for="teknik_ozellikler">Teknik Özellikler:</label>
             <textarea id="teknik_ozellikler" name="teknik_ozellikler" rows="4" cols="50" required></textarea><br>
             <label for="foto">Fotoğraf (URL):</label>
