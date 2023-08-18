@@ -159,9 +159,13 @@
             {% csrf_token %}
             <label for="kategori">Kategori:</label>
             <select id="kategori" name="kategori" required>
-                {% for category in categories %}
-                    <option value="{{ category }}">{{ category }}</option>
-                {% endfor %}
+            <option value="">Seçiniz</option>
+            {% for category in categories %}
+            <option value="{{ category.id }}">{{ category.name }}</option>
+            {% for subcategory in category.category_set.all %}
+            <option value="{{ subcategory.id }}">-- {{ subcategory.name }}</option>
+            {% endfor %}
+            {% endfor %}
             </select><br>
             <label for="model">Model:</label>
             <input type="text" id="model" name="model" required><br>
