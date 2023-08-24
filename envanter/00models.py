@@ -141,3 +141,5 @@ class PictureURL(models.Model):
     def __str__(self):
         return f"Picture URL #{self.id}"
     
+    
+    

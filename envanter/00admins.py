@@ -66,4 +66,4 @@ class PurchaseDetailAdmin(admin.ModelAdmin):
 @admin.register(PictureURL)
 class PictureURLAdmin(admin.ModelAdmin):
     list_display = ('component', 'url')
-    
+

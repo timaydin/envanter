@@ -22,5 +22,7 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('parca_ekle', views.parca_ekle, name='parca_ekle'),  # URL'yi doğru şekilde belirtin
     path('register/', auth_views.RegisterView.as_view(), name='register'),
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('register/', views.register, name='register'),
     path('login/', auth_views.LoginView.as_view(), name='login'),
 ]
