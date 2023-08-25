@@ -31,21 +31,3 @@ class Component(models.Model):
 
     def __str__(self):
         return self.model
-
-
-class Component_Subcategory(models.Model):
-    component = models.ForeignKey(Component, on_delete=models.CASCADE)
-    subcategory = models.ForeignKey(Subcategory, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.component.model
-    
-class RegisterForum(models.Model):
-    name = models.CharField(max_length=100)
-    email = models.EmailField()
-    phone = models.CharField(max_length=100)
-    message = models.TextField()
-
-    def __str__(self):
-        return self.name
-    
