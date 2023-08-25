@@ -26,7 +26,7 @@ ALLOWED_HOSTS = [37.148.211.112]
 # Application definition
 
 INSTALLED_APPS = [
-    'app.envanter'
+    'envanter'
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
