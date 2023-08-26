@@ -1,10 +1,10 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="tr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>envo</title>
+    <title>Komponent envanter</title>
     <style>
         .emptyspace {
         margin: 10px;
@@ -127,14 +127,11 @@
         }
     </style>
 </head>
-
 <body>
     <header>
         <nav>
             <ul>
-                <li><a href="/home/nur/Desktop/envanter/envanter/envanter/teplates/index.html">Anasayfa</a></li>
                 <li><a href="#" id="open-popup">Yeni Parça Ekle</a></li>
-                <li><a href="/home/nur/Desktop/envanter/envanter/envanter/teplates/profile.html">Profil</a></li>
                 <div id="stock-table-container">
                     <form id="search-stock-form" method="GET" action="">
                         <label for="search-stock">Stok Ara:</label>
@@ -144,31 +141,48 @@
             </ul>
         </nav>
     </header>
-<div class="emptyspace">
-    </div>
-        <table border="1">
+<div class="emptyspace"></div>
+
+<div class="container">
+    <table>
+        <thead>
             <tr>
-                <th>Model No</th>
-                <th>Üretici</th>
                 <th>Kategori</th>
-                <th>Paket</th>
-                <th>Konum</th>
-                <th>Açıklama</th>
-                <th>Stok adedi</th>
+                <th>Model</th>
+                <th>Parça Numarası</th>
+                <th>Üretici</th>
+                <th>Birim Fiyat</th>
+                <th>Stok Miktarı</th>
+                <th>Stok Yeri</th>
+                <td>ohm</td>
+                <td>W</td>
+                <td>technic</td>
+                <td>picture</td>
+                <td>document</td>
             </tr>
+        </thead>
+        <tbody>
             {% for component in components %}
-        <tr>
-            <td>{{ component.model }}</td>
-            <td>{{ component.manufacturer }}</td>
-            <td>{{ component.category }}</td>
-            <td>{{ component.package }}</td>
-            <td>{{ component.location }}</td>
-            <td>{{ component.technical_specifications }}</td>
-            <td>{{ component.stock }}</td>
-        </tr>
-        {% endfor %}
+                <tr>
+                    <td>{{ component.kategori }}</td>
+                    <td>{{ component.model }}</td>
+                    <td>{{ component.parca_no }}</td>
+                    <td>{{ component.uretici }}</td>
+                    <td>{{ component.birim_fiyat }}</td>
+                    <td>{{ component.stok_miktar }}</td>
+                    <td>{{ component.location_type }}</td>
+                    <td>{{ component.ohm }}</td>
+                    <td>{{ component.W }}</td>
+                    <td>{{ component.technical_specifications }}</td>
+                    <td>{{ component.picture_url }}</td>
+                    <td>{{ component.document_url }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
     </table>
 </div>
+
+
     <div id="add-component-popup" class="popup">
         <h2>Yeni Komponent Ekle</h2>
         <form action="{% url 'parca_ekle' %}" method="post">
@@ -210,7 +224,7 @@
         </form>
         <button id="close-popup">Kapat</button>
     </div>
-    <footer>&copy; @mekatronik.org © 2023 Parça Envanteri Uygulaması.</footer>
+    <footer>&copy;@mekatronik.org - Komponent Envanteri Uygulaması.</footer>
     <script>
         // JavaScript kodları burada yer alacak
         const openPopupBtn = document.getElementById('open-popup');

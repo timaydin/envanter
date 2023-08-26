@@ -16,6 +16,7 @@ class ComponentForm(forms.ModelForm):
             'manufacturer', 
             'birim_fiyat', 
             'stock', 
+            'location_type',
             'ohm', 
             'w', 
             'technical_specifications', 
