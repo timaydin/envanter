@@ -1,7 +1,5 @@
 from django import forms
-from .models import Component, Subcategory, Category, Register
-
-
+from .models import Component, Subcategory, Category, 
 
 class SubcategoryForm(forms.ModelForm):
     class Meta:
@@ -13,8 +11,7 @@ class ComponentForm(forms.ModelForm):
         model = Component
         fields = ['category', 'model', 'manufacturer', 'stock', 'ohm', 'w', 'technical_specifications', 'picture_url', 'document_url']
 
-
-class RegisterForm(forms.ModelForm):
+class CategoryForm(forms.ModelForm):
     class Meta:
-        model = Register
-        fields = ['name', 'surname', 'email', 'phone', 'password']
+        model = Category
+        fields = ['name', 'description']
