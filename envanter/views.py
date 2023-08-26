@@ -1,5 +1,5 @@
 from .models import Category, Component, Subcategory
-from .forms import ComponentForm, 
+from .forms import ComponentForm, SubcategoryForm, CategoryForm 
 from django.shortcuts import render, redirect
 
 
