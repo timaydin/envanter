@@ -16,13 +16,9 @@ Including another URLconf
 
 from django.urls import path
 from . import views
-from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('', views.index, name='index'),
     path('parca_ekle', views.parca_ekle, name='parca_ekle'),  # URL'yi doğru şekilde belirtin
-    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
-    path('register/', views.register, name='register'),
-    path('login/', auth_views.LoginView.as_view(), name='login'),
     
 ]
