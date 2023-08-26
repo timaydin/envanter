@@ -1,8 +1,7 @@
 from .models import Category, Component, Subcategory
-from .forms import ComponentForm
+from .forms import ComponentForm, 
 from django.shortcuts import render, redirect
-from django.shortcuts import render, get_object_or_404
-from .models import Component
+
 
 
 def component_detail(request, component_id):
