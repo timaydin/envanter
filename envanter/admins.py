@@ -12,7 +12,3 @@ class ComponentAdmin(admin.ModelAdmin):
 @admin.register(Subcategory)
 class SubcategoryAdmin(admin.ModelAdmin):
     list_display = ('subcategory')
-
-@admin.register(RegisterForum)
-class RegisterForumAdmin(admin.ModelAdmin):
-    list_display = ('name', 'email', 'phone', 'message')
